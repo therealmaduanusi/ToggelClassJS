@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            text-align: center;
+            display: grid;
+            place-items: center;
+            min-height: 41.6rem;
+            color: #fff;
+            background-image: linear-gradient(100deg, rgb(17, 17, 104), lightblue);
+            background-repeat: no-repeat;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        button{
+            background-color: transparent;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            min-width: 500px;
+            padding: 30px 0;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        p{
+            border: 2px solid #fff;
+            border-radius: 10px;
+            max-width: 500px;
+            padding: 30px 5px;
+        }
+        h1{
+            margin-bottom: 20px;
+        }
+
+        .content{
+            margin-bottom: 10px;
+        }
+
+        /* .note{
+            display: none;
+        }
+        .note .btn{
+            display: block;
+        } */
+        
+        .hidden-content.reveal-btn{
+            display: block;
+        }
+
+        .hidden-content{
+            display: none;
+            /* display: block; */
+        }
+        
+        .setcolor{
+            color: pink;
+        }
+
+        /* .takeaway{
+            display: none;
+        } */
+
+        /* .color-red.color-green{
+            background-color: aqua;
+        } */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Listener</h1>
+        <div class="content">
+            <button class="btn reveal-btn">Read More...</button>
+            <p class="hidden-content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ullam amet dolorem repudiandae nisi qui repellendus deserunt expedita veniam sed, recusandae iusto itaque! Obcaecati, voluptatibus dicta? Velit libero voluptates vitae.
+            </p>
+        </div>
+        <div class="content">
+            <button class="btn reveal-btn">Read More...</button>
+            <p class="hidden-content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ullam amet dolorem repudiandae nisi qui repellendus deserunt expedita veniam sed, recusandae iusto itaque! Obcaecati, voluptatibus dicta? Velit libero voluptates vitae.
+            </p>
+        </div>
+        <div class="content">
+            <button class="btn reveal-btn">Read More...</button>
+            <p class="hidden-content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ullam amet dolorem repudiandae nisi qui repellendus deserunt expedita veniam sed, recusandae iusto itaque! Obcaecati, voluptatibus dicta? Velit libero voluptates vitae.
+            </p>
+        </div>
+        <div class="content">
+            <button class="btn reveal-btn">Read More...</button>
+            <p class="hidden-content">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ullam amet dolorem repudiandae nisi qui repellendus deserunt expedita veniam sed, recusandae iusto itaque! Obcaecati, voluptatibus dicta? Velit libero voluptates vitae.
+            </p>
+        </div>
+        
+
+    </div>
+
+    <!-- <p class="color-red color-green">hi</p> -->
+    <!-- <p class="color-green">hello</p> -->
+
+    
+
+    <script>
+        // let btn = document.querySelector('.btn');
+        // let notes = document.querySelector('.note');
+        // console.log(notes);
+        // console.log(btn)
+        // function showNote() {
+        //     if (notes.style.display === 'none') {
+        //         notes.style.display = 'block';
+        //     } else {
+        //         notes.style.display = 'none';
+        //     }
+        // }
+        // btn.addEventListener('click', showNote)
+
+        // let revealBtn = document.querySelectorAll('.reveal-btn');
+        // // revealBtn.style.color = 'red';
+        // let hiddenContent = document.querySelector('.hidden-content');
+        // console.log(revealBtn, hiddenContent);
+
+        // let getContent = document.querySelectorAll('.content');
+        // console.log(getContent);
+
+        // // for (let k = 0; k < revealBtn.length; k++) {
+        // //     revealBtn[k].style.color = 'red';
+        // //     console.log(revealBtn[k])
+        // //     function revealContent(params) {
+        // //         if (condition) {
+                    
+        // //         } else {
+                    
+        // //         }
+        // //     }
+        // // }
+
+        // function revealContent() {
+
+        //     for (let i = 0; i < revealBtn.length; i++) {
+        //         let setMe = revealBtn[i];
+        //         console.log(setMe)
+        //         if (hiddenContent.classList.contains('reveal-btn')) {
+        //             hiddenContent.classList.remove('reveal-btn');
+
+        //             revealBtn.style.color = 'red';
+        //             // let testy1 = hiddenContent.classList.remove('reveal-btn');
+        //             // console.log('show', testy1)
+
+        //         } else {
+        //             hiddenContent.classList.add('reveal-btn');
+
+        //             revealBtn.style.color = '#fff';
+        //             // let testy = hiddenContent.classList.add('reveal-btn');
+        //             // console.log('remove', testy);
+        //         }
+        //     }
+            
+        //     // console.log(revealBtn, hiddenContent);
+
+        // }
+        // revealBtn.addEventListener('click', revealContent)
+
+        let revealBtns = document.querySelectorAll('.reveal-btn');
+        revealBtns.forEach(function(revealBtn) {
+            revealBtn.addEventListener('click', function() {
+                // Get the corresponding hidden content for the clicked button
+                let hiddenContent = revealBtn.nextElementSibling;
+
+                // Toggle the class to show/hide the content
+                hiddenContent.classList.toggle('reveal-btn');
+
+                // Change the color of the button based on the visibility of the content
+                if (hiddenContent.classList.contains('reveal-btn')) {
+                    revealBtn.style.color = 'red';
+                } else {
+                    revealBtn.style.color = '#fff';
+                }
+            });
+        });
+
+        // let revealBtns1 = document.querySelectorAll('.reveal-btn');
+        // // console.log(revealBtns1);
+        // revealBtns1.forEach(btn => {
+        //     btn.addEventListener('click', () => {
+        //         btn.classList.toggle('setcolor')
+        //     })
+        // });
+        // for (let i = 0; i < revealBtns1.length; i++) {
+        //     // console.log(revealBtns1[i]);
+        //     // revealBtns1[i].style.color = 'pink';
+        //     function getColor() {
+        //         revealBtns1[i].style.color = 'pink';
+        //         console.log('style')
+        //     }
+        //     // revealBtns1.addEventListener('click', getColor)
+        // }
+
+    </script>
+</body>
+</html>
